@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TeleportScriptYes : MonoBehaviour
 {
+    public GameManagerScript gm;
+
     [SerializeField]
     public GameObject playerPrefab;
     [SerializeField]
@@ -17,6 +19,16 @@ public class TeleportScriptYes : MonoBehaviour
         float movePosZ = spawnPos.position.z - d;
         playerPos.position = new Vector3(spawnPos.position.x, playerPos.position.y, movePosZ);
         playerPrefab.SetActive(true);
+
+        if(gm.GetIsAnomaly()){
+            Debug.Log("IsAnBad");
+        }
+        else{
+            Debug.Log("IsAnGood");
+        }
+
+        gm.UnsetAllAnomalies();
+        gm.SetAnomaly(gm.GenerateAnomaly());
 
     }
 
