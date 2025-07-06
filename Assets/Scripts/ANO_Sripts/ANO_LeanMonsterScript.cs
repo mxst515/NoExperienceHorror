@@ -8,6 +8,9 @@ public class ANO_LeanMonsterScript : MonoBehaviour
     [SerializeField] Transform _monsterPos;
     [SerializeField] Transform wtr;
     [SerializeField] Transform dtr;
+    [SerializeField] Transform doorClosed;
+    [SerializeField] Transform doorClosedTrigger;
+    [SerializeField] Transform doorOpenTrigger;
 
     void OnEnable()
     {
@@ -17,6 +20,18 @@ public class ANO_LeanMonsterScript : MonoBehaviour
 
         if(dtr != null){
             dtr.gameObject.SetActive(true);
+        }
+        
+        if(doorClosed != null){
+            doorClosed.gameObject.SetActive(false);
+        }
+
+        if(doorClosedTrigger != null){
+            doorClosedTrigger.gameObject.SetActive(true);
+        }
+
+        if(doorOpenTrigger != null){
+            doorOpenTrigger.gameObject.SetActive(true);
         }
 
         _monster.transform.position = _monsterPos.position; 

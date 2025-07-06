@@ -11,8 +11,17 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] private GameObject ANO_Television;
     [SerializeField] private GameObject ANO_RedLight;
     [SerializeField] private GameObject ANO_LeanMonster;
+    [SerializeField] private GameObject ANO_NoLights;
+    [SerializeField] private GameObject ANO_NoCarpets;
+    [SerializeField] private GameObject ANO_CarpetTrail;
 
     public List<GameObject> ListAnomalies;
+
+    [Header("DEBUG")]
+    [SerializeField] private int _DEBUG_anomIndex;
+    [SerializeField] private bool _DEBUG_isAnom;
+    [SerializeField] private string _DEBUG_anomName;
+    [SerializeField] private int _DEBUG_firstAnom;
 
     void Start()
     {
@@ -21,13 +30,16 @@ public class GameManagerScript : MonoBehaviour
         ListAnomalies.Add(ANO_Television);
         ListAnomalies.Add(ANO_RedLight);
         ListAnomalies.Add(ANO_LeanMonster);
+        ListAnomalies.Add(ANO_NoLights);
+        ListAnomalies.Add(ANO_NoCarpets);
+        ListAnomalies.Add(ANO_CarpetTrail);
 
         foreach(GameObject anom in ListAnomalies){
             // Debug.Log(anom.name);
         }
 
         UnsetAllAnomalies();
-        SetAnomaly(0);
+        SetAnomaly(_DEBUG_firstAnom);
     }
 
     void Update()
@@ -44,7 +56,8 @@ public class GameManagerScript : MonoBehaviour
     public int GenerateAnomaly(){
         int maxIndex = GetListAnomaliesLength();
         int gen = Random.Range(0, maxIndex);
-        Debug.Log(gen);
+        // Debug.Log(gen);
+        _DEBUG_anomIndex = gen;
         return gen;
     }
 
@@ -56,6 +69,7 @@ public class GameManagerScript : MonoBehaviour
         else{
             IsAnomaly = true;
         }
+        _DEBUG_anomName = ListAnomalies[index].name;
     }
 
     public int GetListAnomaliesLength(){
