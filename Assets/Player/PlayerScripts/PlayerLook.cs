@@ -18,6 +18,16 @@ public class PlayerLook : MonoBehaviour
     // private PlayerInput playerInput;
     private InputAction lookAction;
 
+    [Header("Headbob Settings")]
+    public bool enableHeadbob = true;
+    public float headbobSpeed = 14f;
+    public float headbobAmount = 0.05f;
+    public float headbobSmoothSpeed = 10f;
+    [SerializeField] private PlayerMovementScriptGeneral playerMovement;
+
+    private Vector3 originalCameraPosition;
+    private float headbobTimer = 0f;
+
     private void Awake()
     {
         // playerInput = GetComponent<PlayerInput>();
@@ -48,5 +58,34 @@ public class PlayerLook : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -verticalClamp, verticalClamp);
 
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+        HandleHeadbob();
+
+    }
+
+    private void HandleHeadbob()
+    {
+        if (!enableHeadbob || !playerMovement.isGrounded) 
+        {
+            // Resetuj pozycję, jeśli headbob wyłączony lub w powietrzu
+            cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, originalCameraPosition, Time.deltaTime * headbobSmoothSpeed);
+            return;
+        }
+
+        float speed = playerMovement.currentHorizontalVelocity.magnitude;
+        if (speed < 0.1f)
+        {
+            // Resetuj gdy nie ma ruchu
+            cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, originalCameraPosition, Time.deltaTime * headbobSmoothSpeed);
+            return;
+        }
+
+        headbobTimer += Time.deltaTime * headbobSpeed * (speed / playerMovement.walkSpeed);
+
+        float bobX = Mathf.Cos(headbobTimer) * headbobAmount * 0.1f;
+        float bobY = Mathf.Abs(Mathf.Sin(headbobTimer)) * headbobAmount * 0.8f;
+
+        Vector3 targetPosition = originalCameraPosition + new Vector3(bobX, bobY, 0f);
+        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, targetPosition, Time.deltaTime * headbobSmoothSpeed);
     }
 }

@@ -36,7 +36,7 @@ public class PlayerMovementScriptGeneral : MonoBehaviour
     [SerializeField] private CharacterController controller;
     private Vector2 movementInput;
     private Vector3 verticalVelocity; // Przechowuje tylko prędkość pionową (grawitacja, skok)
-    private Vector3 currentHorizontalVelocity; // Przechowuje aktualną prędkość poziomą gracza
+    public Vector3 currentHorizontalVelocity; // Przechowuje aktualną prędkość poziomą gracza
 
     [Header("Input Actions Components")]
     [SerializeField] private PlayerInput playerInput;
@@ -46,9 +46,17 @@ public class PlayerMovementScriptGeneral : MonoBehaviour
     private InputAction crouchAction;
 
     [Header("Debug booleans")]
-    [SerializeField] private bool isGrounded;
+    [SerializeField] public bool isGrounded;
     [SerializeField] private bool isRunning;
     [SerializeField] private bool isCrouching = false;
+
+    [Header("Footstep Settings")]
+    public AudioSource footstepAudioSource;
+    public AudioClip[] footstepClips;
+
+    public float footstepInterval = 0.5f; // Co ile sekund gra dźwięk kroku przy normalnym chodzeniu
+    private float footstepTimer = 0f;
+
 
     private void Awake()
     {
@@ -97,6 +105,7 @@ public class PlayerMovementScriptGeneral : MonoBehaviour
 
         // Połącz prędkość poziomą i pionową, a następnie wykonaj ruch
         MovePlayer();
+        HandleFootsteps();
         
     }
 
@@ -200,5 +209,31 @@ public class PlayerMovementScriptGeneral : MonoBehaviour
         // Debug.Log("finalVelocity: " + finalVelocity); // debug
     }
 
+    private void HandleFootsteps()
+    {
+        if (isGrounded && currentHorizontalVelocity.magnitude > 0.1f)
+        {
+            footstepTimer -= Time.deltaTime;
+            if (footstepTimer <= 0f)
+            {
+                PlayFootstepSound();
+                float speedFactor = isRunning ? 0.6f : (isCrouching ? 1.2f : 1f);
+                footstepTimer = footstepInterval * speedFactor;
+            }
+        }
+        else
+        {
+            footstepTimer = 0f;
+        }
+    }
+
+    private void PlayFootstepSound()
+    {
+        if (footstepClips.Length > 0)
+        {
+            AudioClip clip = footstepClips[Random.Range(0, footstepClips.Length)];
+            footstepAudioSource.PlayOneShot(clip);
+        }
+    }
     
 }
