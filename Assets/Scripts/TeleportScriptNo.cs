@@ -29,7 +29,8 @@ public class TeleportScriptNo : MonoBehaviour
         }
 
         gm.UnsetAllAnomalies();
-        gm.SetAnomaly(gm.GenerateAnomaly());
+        // gm.SetAnomaly(gm.GenerateAnomaly());
+        gm.SetAnomaly(gm.SmartGenerateAnomaly());
 
     }
 }

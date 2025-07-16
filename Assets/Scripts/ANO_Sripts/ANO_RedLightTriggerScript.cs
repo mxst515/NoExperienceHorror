@@ -20,19 +20,19 @@ public class ANO_RedLightTriggerScript : MonoBehaviour
         redLight.intensity += 0.5f;
         yield return new WaitForSeconds(0.05f);
         redLight.intensity += 0.5f;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.02f);
         redLight.intensity += 1f;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.02f);
         redLight.intensity += 1f;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.02f);
         redLight.intensity += 1f;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.02f);
         redLight.intensity += 1f;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.02f);
         redLight.intensity += 1f;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.02f);
         redLight.intensity += 2f;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.02f);
         gameObject.SetActive(false);
     }
 }
