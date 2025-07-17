@@ -22,6 +22,9 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] private GameObject ANO_SamePosters;
     [SerializeField] private GameObject ANO_ModernCameras;
     [SerializeField] private GameObject ANO_FullLights;
+    [SerializeField] private GameObject ANO_2Bigger;
+    [SerializeField] private GameObject ANO_RunningDoll;
+    [SerializeField] private GameObject ANO_ToyChase;
 
     public List<GameObject> ListAnomalies;
 
@@ -54,6 +57,9 @@ public class GameManagerScript : MonoBehaviour
         ListAnomalies.Add(ANO_SamePosters);
         ListAnomalies.Add(ANO_ModernCameras);
         ListAnomalies.Add(ANO_FullLights);
+        ListAnomalies.Add(ANO_2Bigger);
+        ListAnomalies.Add(ANO_RunningDoll);
+        ListAnomalies.Add(ANO_ToyChase);
 
         foreach(GameObject anom in ListAnomalies){
             // Debug.Log(anom.name);
