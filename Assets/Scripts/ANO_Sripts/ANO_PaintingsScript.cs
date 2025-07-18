@@ -9,7 +9,7 @@ public class ANO_PaintingsScript : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log("paintings");
+        // Debug.Log("paintings");
         _MainWallPaints.SetActive(false);
     }
 

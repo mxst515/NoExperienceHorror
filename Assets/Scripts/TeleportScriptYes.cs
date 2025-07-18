@@ -13,7 +13,7 @@ public class TeleportScriptYes : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("trigger" + other.tag);
+        // Debug.Log("trigger" + other.tag);
         playerPrefab.SetActive(false);
         float d = transform.position.z - playerPos.position.z;
         float movePosZ = spawnPos.position.z - d;
@@ -21,10 +21,12 @@ public class TeleportScriptYes : MonoBehaviour
         playerPrefab.SetActive(true);
 
         if(gm.GetIsAnomaly()){
-            Debug.Log("IsAnBad");
+            // Debug.Log("IsAnBad");
+            gm.RestartCurrentLevel();
         }
         else{
-            Debug.Log("IsAnGood");
+            // Debug.Log("IsAnGood");
+            gm.IncreaseCurrentLevel();
         }
 
         gm.UnsetAllAnomalies();

@@ -42,7 +42,7 @@ public class PlayerFire : MonoBehaviour
 
     private void Fire()
     {
-        Debug.Log("FIRE!");
+        // Debug.Log("FIRE!");
         canFire = false;
         StartCoroutine(FireCooldownCoroutine());
     }

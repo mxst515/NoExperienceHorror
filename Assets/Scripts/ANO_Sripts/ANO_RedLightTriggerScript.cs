@@ -8,7 +8,7 @@ public class ANO_RedLightTriggerScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("triger lights");
+        // Debug.Log("triger lights");
         StartCoroutine(redLightCoroutine());
     }
 

@@ -25,10 +25,14 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] private GameObject ANO_2Bigger;
     [SerializeField] private GameObject ANO_RunningDoll;
     [SerializeField] private GameObject ANO_ToyChase;
+    [SerializeField] private GameObject ANO_NewDoors;
+    [SerializeField] private GameObject ANO_WallText;
 
     public List<GameObject> ListAnomalies;
 
     [SerializeField] private List<GameObject> availableAnomalies = new List<GameObject>();
+
+    public int CurrentLevel = 0;
 
     [Header("DEBUG")]
     [Range(0f, 1f)]
@@ -60,6 +64,8 @@ public class GameManagerScript : MonoBehaviour
         ListAnomalies.Add(ANO_2Bigger);
         ListAnomalies.Add(ANO_RunningDoll);
         ListAnomalies.Add(ANO_ToyChase);
+        ListAnomalies.Add(ANO_NewDoors);
+        ListAnomalies.Add(ANO_WallText);
 
         foreach(GameObject anom in ListAnomalies){
             // Debug.Log(anom.name);
@@ -72,7 +78,7 @@ public class GameManagerScript : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(IsAnomaly);
+        // Debug.Log(IsAnomaly);
     }
 
     public void UnsetAllAnomalies(){
@@ -93,7 +99,7 @@ public class GameManagerScript : MonoBehaviour
         int maxIndex = GetListAnomaliesLength();
         int gen = Random.Range(0, maxIndex);
         // Debug.Log(gen);
-        _DEBUG_anomIndex = gen;
+        // _DEBUG_anomIndex = gen;
         return gen;
     }
 
@@ -132,6 +138,28 @@ public class GameManagerScript : MonoBehaviour
 
     public bool GetIsAnomaly(){
         return IsAnomaly;
+    }
+
+    public int GetCurrentLevel(){
+        return CurrentLevel;
+    }
+
+    public void IncreaseCurrentLevel(){
+        if(CurrentLevel < 8){
+            CurrentLevel += 1;
+        }
+        else{
+            return;
+        }
+    }
+
+    public void RestartCurrentLevel(){
+        if(CurrentLevel > 1){
+            CurrentLevel = 1;
+        }
+        else{
+            return;
+        }
     }
 
 
