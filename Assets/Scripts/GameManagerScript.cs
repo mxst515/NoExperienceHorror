@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
@@ -43,6 +44,10 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] private string _DEBUG_anomName;
     [SerializeField] private int _DEBUG_firstAnom;
 
+    public bool DEBUG_BOOL_GM = false;
+    [SerializeField] GameObject debug_Hud;
+    [SerializeField] TextMeshProUGUI debug_Msg1;
+
     void Start()
     {
         ListAnomalies.Add(ANO_None);
@@ -78,7 +83,7 @@ public class GameManagerScript : MonoBehaviour
 
     void Update()
     {
-        // Debug.Log(IsAnomaly);
+        DEBUG_CHANGE();
     }
 
     public void UnsetAllAnomalies(){
@@ -129,7 +134,9 @@ public class GameManagerScript : MonoBehaviour
         else{
             IsAnomaly = true;
         }
+        //debug
         _DEBUG_anomName = ListAnomalies[index].name;
+        DEBUG_MSG("anom:" + _DEBUG_anomName);
     }
 
     public int GetListAnomaliesLength(){
@@ -162,5 +169,16 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
+    //DEBUG
+    void DEBUG_CHANGE(){
+        if(Input.GetKeyDown(KeyCode.O)){
+            DEBUG_BOOL_GM = !DEBUG_BOOL_GM;
+            debug_Hud.SetActive(DEBUG_BOOL_GM);
+        }
+    }
+
+    void DEBUG_MSG(string msg1){
+        debug_Msg1.text = msg1;
+    }
 
 }

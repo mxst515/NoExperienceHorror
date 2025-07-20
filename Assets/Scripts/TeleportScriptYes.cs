@@ -11,28 +11,36 @@ public class TeleportScriptYes : MonoBehaviour
     [SerializeField]
     private Transform spawnPos, playerPos;
 
+    [SerializeField] private TeleportFadeScriptYes tpFade;
+
     void OnTriggerEnter(Collider other)
     {
         // Debug.Log("trigger" + other.tag);
-        playerPrefab.SetActive(false);
-        float d = transform.position.z - playerPos.position.z;
-        float movePosZ = spawnPos.position.z - d;
-        playerPos.position = new Vector3(spawnPos.position.x, playerPos.position.y, movePosZ);
-        playerPrefab.SetActive(true);
+        if(other.tag == "Player"){
 
-        if(gm.GetIsAnomaly()){
-            // Debug.Log("IsAnBad");
-            gm.RestartCurrentLevel();
+            playerPrefab.SetActive(false);
+            float d = transform.position.z - playerPos.position.z;
+            float movePosZ = spawnPos.position.z - d;
+            playerPos.position = new Vector3(spawnPos.position.x, playerPos.position.y, movePosZ);
+            playerPrefab.SetActive(true);
+
+            tpFade.SetFullBlackInstant();
+            tpFade.StartCoroutine(tpFade.fadeCoroutineYes());
+
+
+            if(gm.GetIsAnomaly()){
+                // Debug.Log("IsAnBad");
+                gm.RestartCurrentLevel();
+            }
+            else{
+                // Debug.Log("IsAnGood");
+                gm.IncreaseCurrentLevel();
+            }
+
+            gm.UnsetAllAnomalies();
+            // gm.SetAnomaly(gm.GenerateAnomaly());
+            gm.SetAnomaly(gm.SmartGenerateAnomaly());
         }
-        else{
-            // Debug.Log("IsAnGood");
-            gm.IncreaseCurrentLevel();
-        }
-
-        gm.UnsetAllAnomalies();
-        // gm.SetAnomaly(gm.GenerateAnomaly());
-        gm.SetAnomaly(gm.SmartGenerateAnomaly());
-
     }
 
 }
