@@ -32,8 +32,10 @@ public class SetupLoaderScript : MonoBehaviour
 
     void LoadMaxFPS()
     {
+        QualitySettings.vSyncCount = 0;
+
         int[] fpsOptions = {-1, 240, 144, 60, 30}; // -1 = unlimited
-        int index = PlayerPrefs.GetInt("FpsLimit", 0); // domyślnie 60 FPS (index 1)
+        int index = PlayerPrefs.GetInt("FpsLimit", 1); // domyślnie 60 FPS (index 1)
         int targetFPS = fpsOptions[index];
         Application.targetFrameRate = targetFPS;
     }

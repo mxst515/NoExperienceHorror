@@ -25,7 +25,7 @@ public class SettingsManager : MonoBehaviour
     {
         volumeSlider.value = PlayerPrefs.GetFloat("Volume", 1f);
         mouseSlider.value = PlayerPrefs.GetFloat("MouseSensitivity", 2f);
-        fpsDropdown.value = PlayerPrefs.GetInt("FpsLimit", 0); // default np. 60 FPS
+        fpsDropdown.value = PlayerPrefs.GetInt("FpsLimit", 1); // default np. 60 FPS
 
         ApplySettings();
     }
@@ -37,6 +37,8 @@ public class SettingsManager : MonoBehaviour
         // np. PlayerController.mouseSensitivity = mouseSlider.value;
 
         int[] fpsOptions = {-1, 240, 144, 60, 30}; // -1 = unlimited
+
+        QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = fpsOptions[fpsDropdown.value];
     }
 
