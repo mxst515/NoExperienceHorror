@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class DeadTrigger : MonoBehaviour
 {
+    [SerializeField] MonsterAudio monsterAudio;
+
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("player deadscreen");
-        gameObject.SetActive(false);
+        monsterAudio.StartCoroutine(monsterAudio.DeadCoroutine());
+        // gameObject.SetActive(false);
     }
 }

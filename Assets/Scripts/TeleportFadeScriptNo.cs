@@ -22,7 +22,6 @@ public class TeleportFadeScriptNo : MonoBehaviour
 
     void Update()
     {
-
         Vector3 playerVect = new Vector3(0,0,player.transform.position.x);
         Vector3 teleportVect = new Vector3(0,0,gameObject.transform.position.x);
         float distance = Vector3.Distance(playerVect, teleportVect);
