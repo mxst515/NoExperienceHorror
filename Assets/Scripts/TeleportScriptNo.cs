@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TeleportScriptNo : MonoBehaviour
 {
@@ -28,7 +29,12 @@ public class TeleportScriptNo : MonoBehaviour
 
             if(gm.GetIsAnomaly()){
                 // Debug.Log("IsAnGood");
-                gm.IncreaseCurrentLevel();
+                if(gm.GetCurrentLevel() < 8){
+                    gm.IncreaseCurrentLevel();
+                }
+                else if (gm.GetCurrentLevel() >= 8){
+                    SceneManager.LoadScene(2);
+                }
             }
             else{
                 // Debug.Log("IsAnBad");

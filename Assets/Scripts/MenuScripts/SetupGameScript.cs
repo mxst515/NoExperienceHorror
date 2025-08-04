@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class SetupGameScript : MonoBehaviour
@@ -15,6 +16,7 @@ public class SetupGameScript : MonoBehaviour
         Panel_MainMenu.SetActive(true);
         Panel_SettingsMenu.SetActive(false);
         loadingScreen.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public IEnumerator LoadGameScene(){
