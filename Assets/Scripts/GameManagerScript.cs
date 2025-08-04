@@ -37,7 +37,7 @@ public class GameManagerScript : MonoBehaviour
 
     [Header("DEBUG")]
     [Range(0f, 1f)]
-    [SerializeField] private float anomalySpawnChance = 0.5f;
+    [SerializeField] private float anomalySpawnChance = 0.7f;
 
     [SerializeField] private int _DEBUG_anomIndex;
     [SerializeField] private bool _DEBUG_isAnom;
@@ -47,6 +47,7 @@ public class GameManagerScript : MonoBehaviour
     public bool DEBUG_BOOL_GM = false;
     [SerializeField] GameObject debug_Hud;
     [SerializeField] TextMeshProUGUI debug_Msg1;
+    [SerializeField] TextMeshProUGUI debug_Msg2;
 
     void Start()
     {
@@ -76,9 +77,11 @@ public class GameManagerScript : MonoBehaviour
             // Debug.Log(anom.name);
         }
 
+        anomalySpawnChance = 0.7f;
         UnsetAllAnomalies();
         InitAnomalyPool();
         SetAnomaly(_DEBUG_firstAnom);
+        
     }
 
     void Update()
@@ -136,7 +139,7 @@ public class GameManagerScript : MonoBehaviour
         }
         //debug
         _DEBUG_anomName = ListAnomalies[index].name;
-        DEBUG_MSG("anom:" + _DEBUG_anomName);
+        DEBUG_MSG(debug_Msg1, "anom:" + _DEBUG_anomName);
     }
 
     public int GetListAnomaliesLength(){
@@ -174,11 +177,18 @@ public class GameManagerScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.O)){
             DEBUG_BOOL_GM = !DEBUG_BOOL_GM;
             debug_Hud.SetActive(DEBUG_BOOL_GM);
+            DEBUG_MSG(debug_Msg2, "anom_spawnRate: " + anomalySpawnChance);
+        }
+        if(Input.GetKeyDown(KeyCode.LeftBracket)){
+            anomalySpawnChance = 0.7f;
+        }
+        if(Input.GetKeyDown(KeyCode.RightBracket)){
+            anomalySpawnChance = 0.9f;
         }
     }
 
-    void DEBUG_MSG(string msg1){
-        debug_Msg1.text = msg1;
+    void DEBUG_MSG(TextMeshProUGUI obj, string msg1){
+        obj.text = msg1;
     }
 
 }
