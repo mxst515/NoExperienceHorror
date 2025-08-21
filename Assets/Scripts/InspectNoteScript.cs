@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class InspectNoteScript : MonoBehaviour
 {
@@ -14,10 +15,11 @@ public class InspectNoteScript : MonoBehaviour
     [SerializeField] PlayerLook playerLookScript;
     [SerializeField] PlayerMovementScriptGeneral playerMovementScript;
 
-
     [SerializeField] GameObject noteUI;
     
     [SerializeField] GameObject pickUpText;
+
+    public static bool anyNoteOpen = false;
 
     public bool inReach = false;
     public bool noteOpen = false;
@@ -29,6 +31,7 @@ public class InspectNoteScript : MonoBehaviour
 
         inReach = false;
         noteOpen = false;
+        anyNoteOpen = false;
     }
 
     void OnEnable()
@@ -80,5 +83,11 @@ public class InspectNoteScript : MonoBehaviour
 
         playerLookScript.enabled = !noteOpen;
         playerMovementScript.enabled = !noteOpen;
+
+        anyNoteOpen = noteOpen;
+    }
+
+    public bool CheckNoteOpen(){
+        return noteOpen;
     }
 }

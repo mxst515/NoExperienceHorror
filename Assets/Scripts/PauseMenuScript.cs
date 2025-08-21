@@ -9,6 +9,7 @@ public class PauseMenuScript : MonoBehaviour
 
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private PlayerLook playerLook;
+    [SerializeField] PlayerMovementScriptGeneral playerMovementScript;
 
     void Update()
     {
@@ -30,12 +31,16 @@ public class PauseMenuScript : MonoBehaviour
 
     public void Resume(){
         pauseUI.SetActive(false);
-        playerLook.enabled = true;
 
+        if(!InspectNoteScript.anyNoteOpen){
+            playerLook.enabled = true;
+            playerMovementScript.enabled = true;
+        }
+
+        Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
         GameIsPaused = false;
 
-        Cursor.lockState = CursorLockMode.Locked;
         // Cursor.visible = false;
 
     }
@@ -43,6 +48,7 @@ public class PauseMenuScript : MonoBehaviour
     public void Pause(){
         pauseUI.SetActive(true);
         playerLook.enabled = false;
+        playerMovementScript.enabled = false;
 
         Time.timeScale = 0f;
         GameIsPaused = true;

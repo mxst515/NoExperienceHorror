@@ -73524,6 +73524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseUI: {fileID: 2012055033}
   playerLook: {fileID: 1895274381}
+  playerMovementScript: {fileID: 1895274377}
 --- !u!1 &1330912276
 GameObject:
   m_ObjectHideFlags: 0
