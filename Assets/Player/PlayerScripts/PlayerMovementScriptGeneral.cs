@@ -55,6 +55,7 @@ public class PlayerMovementScriptGeneral : MonoBehaviour
     public AudioClip[] footstepClips;
 
     public float footstepInterval = 0.5f; // Co ile sekund gra dźwięk kroku przy normalnym chodzeniu
+    public float footstepIntervalRun = 0.94f;
     private float footstepTimer = 0f;
 
 
@@ -216,8 +217,8 @@ public class PlayerMovementScriptGeneral : MonoBehaviour
             footstepTimer -= Time.deltaTime;
             if (footstepTimer <= 0f)
             {
-                PlayFootstepSound();
-                float speedFactor = isRunning ? 0.6f : (isCrouching ? 1.2f : 1f);
+                PlayFootstepSound();            // 0.6f
+                float speedFactor = isRunning ? footstepIntervalRun : (isCrouching ? 1.2f : 1f);
                 footstepTimer = footstepInterval * speedFactor;
             }
         }

@@ -88890,9 +88890,17 @@ PrefabInstance:
       propertyPath: headbobSmoothSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7937015332619154193, guid: f1b25dbcb9b33714bab764d6b0120e69, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8473268790009087631, guid: f1b25dbcb9b33714bab764d6b0120e69, type: 3}
       propertyPath: walkSpeed
       value: 1.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8473268790009087631, guid: f1b25dbcb9b33714bab764d6b0120e69, type: 3}
+      propertyPath: jumpHeight
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8473268790009087631, guid: f1b25dbcb9b33714bab764d6b0120e69, type: 3}
       propertyPath: crouchSpeed
@@ -88900,11 +88908,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8473268790009087631, guid: f1b25dbcb9b33714bab764d6b0120e69, type: 3}
       propertyPath: sprintSpeed
-      value: 4
+      value: 1.85
       objectReference: {fileID: 0}
     - target: {fileID: 8473268790009087631, guid: f1b25dbcb9b33714bab764d6b0120e69, type: 3}
       propertyPath: footstepInterval
       value: 0.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 8473268790009087631, guid: f1b25dbcb9b33714bab764d6b0120e69, type: 3}
+      propertyPath: crouchSprintSpeed
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8473268790009087631, guid: f1b25dbcb9b33714bab764d6b0120e69, type: 3}
       propertyPath: groundMask.m_Bits
