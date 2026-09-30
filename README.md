@@ -24,6 +24,8 @@ The compiled, playable version of the game is available for free on itch.io:
 
 Check out the video showcasing the game and its development process:
 
+***I Made a Horror Game with NO EXPERIENCE***
+
 [![Out There Gameplay/Devlog](https://img.youtube.com/vi/q8lGeUwgJes/maxresdefault.jpg)](https://www.youtube.com/watch?v=q8lGeUwgJes)
 
 ---
